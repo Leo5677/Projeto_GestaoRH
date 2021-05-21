@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block main %}
+Delete
+<br>
+<form method="post">
+    {% csrf_token %}
+    <h1>Você tem certeza que quer deletar o departamento: {{ departamento.nome }}?</h1>
+    {{ form|bootstrap  }}
+    <button type="submit" class="btn btn-danger">Confirmar</button>
+</form>
+{% endblock %}

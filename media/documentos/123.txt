@@ -1,0 +1,2 @@
+sudo snap install heroku --classic
+heroku plugins:install heroku-config
