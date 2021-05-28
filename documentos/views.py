@@ -1,9 +1,5 @@
-from django.shortcuts import render
-from django.views.generic import *
+from django.views.generic import CreateView
 from .models import Documento
-
-
-# Create your views here.
 
 
 class DocumentoCreateView(CreateView):

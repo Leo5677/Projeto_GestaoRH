@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
 {% load bootstrap %}
 {% block main %}
-<form method="post">
-    {% csrf_token %}
-    {{ form|bootstrap  }}
-    <button type="submit">Salvar</button>
-</form>
+<div class="card">
+    <div class="card-title d-flex justify-content-center">
+        <h3 class="text-darker">Criar/Editar | Empresa</h3>
+    </div>
+    <div class="card-header d-flex">
+        <form method="post">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <div class="mr-auto p-2">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-danger"><a href="{% url 'home' %}" class="text-white">Voltar</a>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
+

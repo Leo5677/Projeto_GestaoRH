@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
-
 from funcionarios.models import Funcionario
+
 
 # Create your models here.
 

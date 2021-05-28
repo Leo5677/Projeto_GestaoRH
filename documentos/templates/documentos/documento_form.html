@@ -1,10 +1,22 @@
 {% extends 'base.html' %}
 {% load bootstrap %}
+{% load static %}
 {% block main %}
 {{ form.errors }}
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form|bootstrap  }}
-    <button type="submit">Adicionar</button>
-</form>
+<div class="card">
+    <div class="card-title d-flex justify-content-center">
+        <h3 class="text-darker">Anexar | Documentação</h3>
+    </div>
+    <div class="card-header d-flex">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <div class="mr-auto p-2">
+                <button type="submit" class="btn btn-primary">Adicionar Documentação</button>
+                <button type="submit" class="btn btn-danger"><a href="{% url 'list_funcionarios' %}" class="text-white">Voltar</a>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

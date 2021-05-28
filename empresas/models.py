@@ -6,7 +6,7 @@ from django.urls import reverse
 
 
 class Empresa(models.Model):
-    nome = models.CharField('Nome', max_length=100, help_text='Nome da Empresa')
+    nome = models.CharField('Nome Da Empresa', max_length=100)
 
     def __str__(self):
         return self.nome

@@ -1,11 +1,36 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load bootstrap %}
 {% block main %}
-Edit
-<br>
-<form method="post">
-    {% csrf_token %}
-    {{ form|bootstrap }}
-    <button type="submit" class="btn btn-primary">Salvar</button>
-</form>
+
+<div class="card">
+    <div class="card-title d-flex justify-content-center">
+        <h3 class="text-darker">Criar/Editar | Banco De Horas</h3>
+    </div>
+    <div class="card-header d-flex">
+        <form method="post">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <div class="mr-auto p-2">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="button" class="btn btn-danger"><a href="{% url 'list_hora_extra' %}" class="text-white">Voltar</a>
+                </button>
+                {% if object %}
+                <a href="{% url 'delete_hora_extra' object.id %}" class="btn btn-danger">Deletar</a>
+                {% endif %}
+                <button class="btn btn-info text-white" onclick="utilizouHoraExtra({{ object.id }})" type="button">Marcar como utilizada.</button>
+                <button class="btn btn-info text-white" onclick="naoUtilizouHoraExtra({{ object.id }})" type="button">Marcar como não utilizada.</button>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer d-flex">
+        <h3 id="horas_atualizadas">Total Atual - Horas Extras: {{ object.funcionarios.total_hora_extra }} Horas</h3>
+    </div>
+</div>
+<p id="mensagem"></p>
+{% endblock %}
+
+{% block static %}
+<script src="{% static 'js/ajax.js' %}"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
 {% endblock %}

@@ -1,15 +1,47 @@
 {% extends 'base.html' %}
 {% load bootstrap %}
 {% block main %}
-Edit
-<br>
-<form method="post">
-    {% csrf_token %}
-    {{ form|bootstrap }}
-    <a href="{% url 'create_documento' object.id %}" class="btn btn-info">Adicionar Documento</a>
-    <button type="submit" class="btn btn-primary">Salvar Edição</button>
-</form>
-{% for documento in object.documento_set.all %}
-<a href="{{ documento.arquivo.url }}">{{ documento }}</a><br>
-{% endfor %}
+<div class="card">
+    <div class="card-title d-flex justify-content-center">
+        <h3 class="text-darker">Criar/Editar | Funcionário</h3>
+    </div>
+    <div class="card-header"><h2>Funcionário</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <div class="mr-auto p-2">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-danger"><a href="{% url 'list_funcionarios' %}" class="text-white">Voltar</a>
+                </button>
+            </div>
+        </form>
+    </div>
+    {% if funcionario %}
+    <div class="card-body"><h2>Documentos</h2>
+        <ul>
+            {% for documento in object.documento_set.all %}
+            <li><a href="{{ documento.arquivo.url }}">{{ documento }}</a></li>
+
+            {% endfor %}
+        </ul>
+        <a href="{% url 'create_documento' object.id %}" class="btn btn-primary">Anexar Documentação</a>
+    </div>
+    {% else %}
+    <div class="card-body"><h3>*Não Esqueça de Adicionar a Documentação Posteriormente!*</h3></div>
+    {% endif %}
+
+    {% if funcionario %}
+    <div class="card-footer"><h2>Banco De Horas</h2>
+        <ul>
+            {% for registro_hora in object.registrohoraextra_set.all %}
+            <a href="{% url 'update_hora_extra' registro_hora.id %}">
+                <li>Motivo: {{ registro_hora.motivo }} | {{ registro_hora.horas }} horas</li>
+            </a>
+            {% endfor %}
+        </ul>
+        <h5>*Total De Horas Extras: {{ object.total_hora_extra }} horas*</h5>
+    </div>
+</div>
+{% else %}
+{% endif %}
 {% endblock %}

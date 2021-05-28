@@ -1,12 +1,23 @@
 {% extends 'base.html' %}
 {% load bootstrap %}
 {% block main %}
-Delete
-<br>
-<form method="post">
-    {% csrf_token %}
-    <h1>Você tem certeza que quer deletar o departamento: {{ departamento.nome }}?</h1>
-    {{ form|bootstrap  }}
-    <button type="submit" class="btn btn-danger">Confirmar</button>
-</form>
+<div class="card">
+    <div class="card-title d-flex justify-content-center">
+        <h3 class="text-darker">Deletar | Departamento</h3>
+    </div>
+    <div class="card-header d-flex">
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <div class="mr-auto p-2"><h3 class="text-darker">Você tem certeza que quer deletar o departamento: {{ departamento.nome }}?</h3>
+                <button type="submit" class="btn btn-danger">Confirmar</button>
+                <button type="submit" class="btn btn-primary"><a href="{% url 'list_departamentos' %}" class="text-white">Voltar</a></button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
+
+
+
+

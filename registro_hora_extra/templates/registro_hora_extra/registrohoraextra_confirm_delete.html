@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
-
 {% block main %}
-
-<h2>Removendo registro de Hora Extra </h2>
-
-<form method="POST">
-    {% csrf_token %}
-    <h1>Voce esta certo que quer deletar {{ object }}</h1>
-    {{ form }}
-
-    <button type="submit" class="btn btn-danger">Confirmar</button>
-</form>
-
+<div class="card">
+    <div class="card-title d-flex justify-content-center">
+        <h3 class="text-darker">Deletar | Banco De Horas</h3>
+    </div>
+    <div class="card-header d-flex">
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <div class="mr-auto p-2"><h3 class="text-darker">Você tem certeza que quer deletar o banco de horas: {{ object }}?</h3>
+                <button type="submit" class="btn btn-danger">Confirmar</button>
+                <button type="submit" class="btn btn-primary"><a href="{% url 'list_hora_extra' %}" class="text-white">Voltar</a></button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

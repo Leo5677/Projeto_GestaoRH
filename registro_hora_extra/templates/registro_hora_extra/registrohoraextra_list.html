@@ -1,18 +1,35 @@
 {% extends 'base.html' %}
 {% block main %}
-Banco De Horas
-<br>
-{% for registro_re in object_list %}
-<a href="{% url 'update_hora_extra' registro_re.id %}">
-    {{ registro_re }}</a>
-<a href="{% url 'delete_hora_extra' registro_re.id %}">
-    Deletar
-</a>
-<br>
-{% endfor %}
-{% if not object_list %}
-Não existe registros de hora extra no banco
-{% endif %}
-<br>
-<a href="{% url 'create_hora_extra' %}" class="btn btn-info">Novo</a>
+<div class="card">
+    <div class="card-title d-flex justify-content-center">
+        <h3 class="text-darker">Gerenciamento | Banco De Horas</h3>
+    </div>
+
+    <div class="card-header d-flex">
+        <div class="mr-auto p-2"><h3 class="text-darker">Banco De Horas Da Empresa:</h3></div>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-striped table-responsive-lg">
+            <thead class="thead-light">
+            <tr>
+                <th>Editar Banco De Horas</th>
+                <th>Deletar Banco De Horas</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for registro_re in object_list %}
+            <tr>
+                <td><a href="{% url 'update_hora_extra_base' registro_re.id %}">{{ registro_re }}</a></td>
+                <td><a href="{% url 'delete_hora_extra' registro_re.id %}">Deletar</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary"><a href="{% url 'create_hora_extra' %}" class="text-white">Registrar Hora Extra</a></button>
+        <button type="submit" class="btn btn-info"><a href="{% url 'exportar_excel' %}" class="text-white">Exportar Excel</a></button>
+        <button type="submit" class="btn btn-info"><a href="{% url 'exportar_csv' %}" class="text-white">Exportar CSV</a></button>
+        <button type="submit" class="btn btn-danger"><a href="{% url 'home' %}" class="text-white">Voltar</a></button>
+    </div>
+</div>
 {% endblock %}
