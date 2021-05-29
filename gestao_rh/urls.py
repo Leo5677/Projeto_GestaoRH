@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework import routers
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +29,5 @@ urlpatterns = [
     path('documentos/', include('documentos.urls')),
     path('departamentos/', include('departamentos.urls')),
     path('registros/', include('registro_hora_extra.urls')),
+    path('api-rest/', include('core.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
