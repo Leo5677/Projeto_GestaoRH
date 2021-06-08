@@ -14,6 +14,8 @@ class Funcionario(models.Model):
     user = models.OneToOneField(User, on_delete=models.PROTECT)
     departamentos = models.ManyToManyField(Departamento)
     empresas = models.ForeignKey(Empresa, on_delete=models.PROTECT, null=True, blank=True)
+    imagem = models.ImageField()
+    ferias = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nome

@@ -1,0 +1,44 @@
+{% load static %}
+{% load bootstrap %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Gestão RH</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    {% if usuario.funcionario.empresas %}
+                    <a class="nav-link" href="{% url 'edit_empresa' usuario.funcionario.empresas.id %}">Editar
+                        Empresa</a>
+                    {% else %}
+                    <a class="nav-link" href="{% url 'create_empresa' %}">Criar Empresa</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'list_departamentos' %}">Departamentos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'list_funcionarios' %}">Funcionários</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">Banco De Horas</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="{% url 'list_hora_extra' %}">Gerenciar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'exportar_csv' %}">Exportar Para CSV</a></li>
+                        <li><a class="dropdown-item" href="{% url 'exportar_excel' %}">Exportar Para Excel</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-danger" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

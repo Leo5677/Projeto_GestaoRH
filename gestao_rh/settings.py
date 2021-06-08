@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'documentos',
     'registro_hora_extra',
     'core',
+    'app_antiga',
+    'app_antiga2',
 ]
 
 MIDDLEWARE = [
@@ -85,6 +87,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'antigo': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'gestao_rh',
+        'USER': 'postgres',
+        'PASSWORD': 'Comp@q567',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -161,3 +171,5 @@ CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASk_SERIALIZER = 'json'
+
+DATABASE_ROUTERS = ['gestao_rh.DBRouters.DBRouters']

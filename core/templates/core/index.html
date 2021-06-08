@@ -7,10 +7,6 @@
 
     <div class="card-header d-flex">
         <div class="mr-auto p-2"><h3 class="text-darker">Seja bem vindo(a): {{ usuario.funcionario.nome }}!</h3></div>
-        <div class="p-2">
-            <button type="submit" class="btn btn-danger"><a href="{% url 'logout' %}" class="text-white">Logout</a>
-            </button>
-        </div>
     </div>
 
     <div class="card-body">
@@ -38,5 +34,76 @@
             </tbody>
         </table>
     </div>
+    <div class="card-footer"></div>
 </div>
+<br>
+<div class="row">
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <h2>
+                <i class="bi bi-people-fill" style="font-size: 40px; color:black"></i>
+                <a href="{% url 'list_funcionarios' %}">Funcionários</a>
+            </h2>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <h2>
+                <i class="bi bi-clock-fill" style="font-size: 40px; color:black"></i>
+                <a href="{% url 'list_hora_extra' %}">Banco De Horas</a>
+            </h2>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <h2>
+                <i class="bi bi-file-earmark-text-fill" style="font-size: 40px; color:black"></i>
+                <a href="#">Documentos</a>
+            </h2>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Funcionários</h5>
+                <ul>
+                    <li>Nº Total: {{ total_funcionarios }}</li>
+                    <li>Nº Total - Férias: {{ total_funcionarios_ferias }}</li>
+                    <li>Nº Total - Doc. Pendentes: {{ total_funcionarios_doc_pendentes }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Banco De Horas</h5>
+                <ul>
+                    <li>Pendentes: {{ total_hora_extra_pendente }}h</li>
+                    <li>Utilizadas: {{ total_hora_extra_utilizadas }}h</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+     <div class="col">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Documentos</h5>
+                <ul>
+                    <li>Documentos OK: {{ total_funcionarios_doc_ok }}</li>
+                    <li>Documentos Faltantes: {{ total_funcionarios_doc_pendente }}</li>
+                    <li>Documentos Faltantes - RG: {{ total_funcionarios_rg }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
